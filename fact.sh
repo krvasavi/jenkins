@@ -1,12 +1,33 @@
-!!/bin/bash
-echo "Enter a number"
+#!/bin/bash
+# Recursive factorial function
 
-# Read the number
+factorial()
+{
+    product=$1
+           
+    # Defining a function to calculate factorial using recursion
+    if((product <= 2)); then
+        echo $product
+    else
+        f=$((product -1))
+        
+# Recursive call
+
+f=$(factorial $f)
+f=$((f*product))
+echo $f
+fi
+}
+
+# main program
+# reading the input from user
+echo "Enter the number:"   
 read num
 
-fact=1
-
-for((i=2;i<=num;i++))
-{
-  fact=$((fact * i))
-}
+# defining a special case for 0! = 1
+if((num == 0)); then   
+echo 1
+else
+#calling the function
+factorial $num
+fi
